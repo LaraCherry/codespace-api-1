@@ -3,12 +3,12 @@ import requests
 import xmltodict
 
 
-class TestCreateNewIssue(unittest.TestCase):
+class TestGetIssue(unittest.TestCase):
     def setUp(self):
         self.base_url = 'https://codespace-api.myjetbrains.com/youtrack/rest'
         self.creds = ('root', 'c00desp1ce')
 
-    def test_create_new_issue(self):
+    def test_get_issue(self):
         issue_id = 'API-1'
         url = self.base_url + '/issue/' + issue_id
         response = requests.get(url, auth=self.creds)
@@ -21,7 +21,7 @@ class TestCreateNewIssue(unittest.TestCase):
             issue_id
         )
 
-    def test_invalid_issue(self):
+    def test_get_invalid_issue(self):
         issue_id = 'IAMINVALID'
         url = self.base_url + '/issue/' + issue_id
         response = requests.get(url, auth=self.creds)
