@@ -1,17 +1,15 @@
 import unittest
 import requests
 import xmltodict
+from base_test import BaseTestCase
 
 
-class TestGetIssue(unittest.TestCase):
-    def setUp(self):
-        self.base_url = 'https://codespace-api.myjetbrains.com/youtrack/rest'
-        self.creds = ('root', 'c00desp1ce')
+class TestGetIssue(BaseTestCase):
 
     def test_get_issue(self):
         issue_id = 'API-1'
         url = self.base_url + '/issue/' + issue_id
-        response = requests.get(url, auth=self.creds)
+        response = requests.get(url)
         response_dict = xmltodict.parse(response.text)
 
         self.assertEqual(response.status_code, 200)
