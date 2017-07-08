@@ -19,6 +19,7 @@ class TestGetIssue(BaseTestCase):
             issue_id
         )
 
+
     def test_get_invalid_issue(self):
         issue_id = 'IAMINVALID'
         url = self.base_url + '/issue/' + issue_id

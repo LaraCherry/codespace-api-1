@@ -24,3 +24,20 @@ class BaseTestCase(unittest.TestCase):
 
         r = requests.post(url, data=params)
         self.cookies = r.cookies
+
+    def create_issue(self):
+        url = self.base_url + '/issue/'
+
+        params = {
+            'project': 'API',
+            'summary': '[Test issue] summary',
+            'description': 'Test - created by autotests'
+        }
+
+        r = requests.put(url, data=params, cookies=self.cookies)
+        self.assertEqual(r.status_code, 201)
+
+        issue_id = r.headers['Location'].split('/')[-1]
+
+        return issue_id
+
